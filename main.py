@@ -37,7 +37,15 @@ class InstaFollower:
             self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", followers_modal)
             time.sleep(2)
     def follow(self):
-        
+        all_buttons = self.driver.find_elements(By.CSS_SELECTOR, value='._aano button')
+        for button in all_buttons:
+            try:
+                button.click()
+                time.sleep(1.1)
+            # Clicking button for someone who is already being followed will trigger dialog to Unfollow/Cancel
+            except ElementClickInterceptedException:
+                cancel_button = self.driver.find_element(by=By.XPATH, value="//button[contains(text(), 'Cancel')]")
+                cancel_button.click()
 
 if __name__ == '__main__':
     bot = InstaFollower()
