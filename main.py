@@ -4,6 +4,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
+from selenium.common.exceptions import ElementClickInterceptedException
 import time
 
 chrome_options = webdriver.ChromeOptions()
@@ -31,7 +32,7 @@ class InstaFollower:
         self.driver.get(f'https://instagram.com/{SIMILAR_ACCOUNT}/')
         wait = WebDriverWait(self.driver, 20)
         wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[1]/div[2]/div[2]/section/main/div/header/section/ul/li[2]/a'))).click()
-        followers_modal = wait.until(EC.presence_of_all_elements_located((By.XPATH, '/html/body/div[7]/div[1]/div/div[2]/div/div/div/div/div[2]')))
+        followers_modal = wait.until(EC.presence_of_all_elements_located((By.XPATH, '/html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]')))
         for _ in range(5):
             self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", followers_modal)
             time.sleep(2)
@@ -41,3 +42,5 @@ class InstaFollower:
 if __name__ == '__main__':
     bot = InstaFollower()
     bot.login()
+    bot.find_followers()
+    bot.follow()
