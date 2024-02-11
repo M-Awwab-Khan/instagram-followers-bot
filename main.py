@@ -1,18 +1,16 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import ElementClickInterceptedException
 import time
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option('detach', True)
 
-MY_EMAIL = 'fakeofawwab@gmail.com'
-MY_PASSWORD = '(^;E7JM_Rpfhhqy'
-SIMILAR_ACCOUNT = 'learn.machinelearning'
+MY_EMAIL = 'Your Email Address'
+MY_PASSWORD = 'Your Insta Password'
+SIMILAR_ACCOUNT = "Your competitor's username"
 
 class InstaFollower:
     def __init__(self) -> None:
